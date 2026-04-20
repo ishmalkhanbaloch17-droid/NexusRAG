@@ -1,0 +1,6 @@
+{
+  "name": "Gemini RAG Explorer",
+  "description": "A professional Retrieval-Augmented Generation application powered by Gemini. Upload documents, index them with embeddings, and chat with your data using semantic search.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
