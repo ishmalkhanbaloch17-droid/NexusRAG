@@ -177,10 +177,10 @@ export default function App() {
       <header className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-panel shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
-            <span className="text-white font-bold text-xs uppercase">NX</span>
+            <span className="text-white font-bold text-xs uppercase">DM</span>
           </div>
           <h1 className="text-lg font-semibold tracking-tight text-white">
-            NexusRAG <span className="text-slate-500 font-normal text-sm">v2.4.0</span>
+            DocuMind RAG <span className="text-slate-500 font-normal text-sm">v1.0.0</span>
           </h1>
         </div>
         <div className="flex items-center gap-4">
