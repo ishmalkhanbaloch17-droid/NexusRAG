@@ -46,15 +46,22 @@ export function chunkText(text: string, chunkSize: number = 1000, overlap: numbe
 }
 
 export function cosineSimilarity(vecA: number[], vecB: number[]): number {
+  if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
+  
   let dotProduct = 0;
   let mA = 0;
   let mB = 0;
+  
   for (let i = 0; i < vecA.length; i++) {
     dotProduct += vecA[i] * vecB[i];
     mA += vecA[i] * vecA[i];
     mB += vecB[i] * vecB[i];
   }
-  return dotProduct / (Math.sqrt(mA) * Math.sqrt(mB));
+  
+  const magnitude = Math.sqrt(mA) * Math.sqrt(mB);
+  if (magnitude === 0) return 0;
+  
+  return dotProduct / magnitude;
 }
 
 export interface DocumentChunk {

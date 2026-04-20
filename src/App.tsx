@@ -105,14 +105,21 @@ export default function App() {
         fileName: file.name,
       }));
 
-      const chunksWithEmbeddings = await Promise.all(
-        newChunks
-          .filter(chunk => chunk.text && chunk.text.trim().length > 0)
-          .map(async (chunk) => {
+      const validChunks = newChunks.filter(chunk => chunk.text && chunk.text.trim().length > 0);
+      const chunksWithEmbeddings: any[] = [];
+      
+      // Process in batches to avoid overwhelming the API
+      const BATCH_SIZE = 5;
+      for (let i = 0; i < validChunks.length; i += BATCH_SIZE) {
+        const batch = validChunks.slice(i, i + BATCH_SIZE);
+        const batchResults = await Promise.all(
+          batch.map(async (chunk) => {
             const embedding = await getEmbedding(chunk.text);
             return { ...chunk, embedding };
           })
-      );
+        );
+        chunksWithEmbeddings.push(...batchResults);
+      }
 
       setChunks(prev => [...prev, ...chunksWithEmbeddings]);
       setDocuments(prev => prev.map(d => d.id === docId ? { 
